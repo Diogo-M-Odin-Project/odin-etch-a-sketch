@@ -1,9 +1,16 @@
 const container = document.querySelector('.container');
 
-function createGrid() {
-    for (let i = 0; i < 256; i++) {
+function createGrid(squaresPerSide) {
+    let squareWidth = (parseInt(getComputedStyle(container).width) / squaresPerSide).toString() + "px";
+
+    console.log(squareWidth);
+
+    for (let i = 0; i < squaresPerSide * squaresPerSide; i++) {
         let square = document.createElement('div');
         square.classList.toggle('square');
+
+        square.style.width = squareWidth;
+        square.style.height = squareWidth;
 
         square.addEventListener('mouseover', function(event) {
             let r = Math.floor(Math.random() * 256).toString(16);
@@ -17,4 +24,14 @@ function createGrid() {
     }
 }
 
-createGrid();
+createGrid(5);
+
+/*
+function changeGrid(squaresPerSide) {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+}
+    createGrid(squaresPerSide);
+}
+*/
