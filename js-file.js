@@ -17,21 +17,33 @@ function createGrid(squaresPerSide) {
             let g = Math.floor(Math.random() * 256).toString(16);
             let b = Math.floor(Math.random() * 256).toString(16);
             event.target.style.backgroundColor = '#' + r + g + b;
-            console.log('#' + r + g + b);
         });
 
         container.appendChild(square);
     }
 }
 
-createGrid(5);
+createGrid(16);
 
-/*
-function changeGrid(squaresPerSide) {
+const button = document.querySelector('#button');
+
+
+button.addEventListener('click', function(event) {
+    let squaresPerSide = parseInt(prompt("Choose number of squares to use in new grid. (Up to 100)"));
+    if (squaresPerSide > 100) {
+        alert("Too many squares.");
+        return;
+    } else if (squaresPerSide <= 0) {
+        alert("Number too short.");
+        return;
+    } else if (isNaN(squaresPerSide)) {
+        alert("This is not a number");
+        return;
+    }
+
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
-}
+
     createGrid(squaresPerSide);
-}
-*/
+});
